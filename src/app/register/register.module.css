@@ -1,12 +1,15 @@
 .container {
     max-width: 650px;
     margin: 100px auto;
-    /* Center the container vertically and horizontally */
     padding: 40px;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, #cfeaec, #487ef1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+}
+
+.container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .title {
@@ -39,7 +42,6 @@
 .input:focus {
     border-color: #007bff;
     outline: none;
-    /* Remove default outline on focus */
 }
 
 .button {
@@ -80,7 +82,12 @@
 
 .logo img {
     width: 70%;
-    height:70%;
+    height: 70%;
+    transition: transform 0.3s;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
 }
 
 .inputWithIcon {
@@ -95,6 +102,10 @@
     background: none;
     border: none;
     cursor: pointer;
+    transition: transform 0.3s;
+}
+.passwordToggle:hover {
+    transform: scale(1.2);
 }
 
 .passwordError {
@@ -136,7 +147,7 @@
     height: 5px;
     border-radius: 5px;
     margin-top: 5px;
-    transition: width 0.8s ease-in-out, background-color 0.8s ease-in-out; /* Added transition properties */
+    transition: width 0.8s ease-in-out, background-color 0.8s ease-in-out;
 }
 
 .weak {
