@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+
 export default function LoginPage() {
     const router = useRouter();
     const [password, setPassword] = useState("");
@@ -35,8 +36,17 @@ export default function LoginPage() {
     }
 
     return (
+
         <div className={styles.container}>
             <div className={styles.left}>
+                <div className={styles.logo}>
+                    <Image
+                        src="/emergensyslogo.png"
+                        alt="CAD Logo"
+                        width={160}
+                        height={150}
+                    />
+                </div>
                 <h1 className={styles.title}>Login</h1>
                 <form onSubmit={handleLogin} className={styles.form}>
                     <div className={styles.formGroup}>

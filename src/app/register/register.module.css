@@ -79,12 +79,8 @@
 }
 
 .logo img {
-    width: 230px;
-    height: 150px;
-    border-radius: 30%;
-    /* Rounded border for circular shape */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Add a subtle shadow */
+    width: 70%;
+    height:70%;
 }
 
 .inputWithIcon {

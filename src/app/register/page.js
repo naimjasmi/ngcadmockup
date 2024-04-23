@@ -104,9 +104,9 @@ export default function RegisterPage() {
         <div className={styles.container}>
             <div className={styles.logo}>
                 <Image
-                    src="/.png"
+                    src="/emergensyslogo.png"
                     alt="CAD Logo"
-                    width={150}
+                    width={160}
                     height={150}
                 />
             </div>
