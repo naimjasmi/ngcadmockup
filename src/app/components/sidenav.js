@@ -4,6 +4,7 @@ import { FaBars, FaHome, FaInfoCircle, FaEnvelope, FaSignOutAlt } from 'react-ic
 import Link from 'next/link';
 import "./sidenav.css";
 
+
 const SideNav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
