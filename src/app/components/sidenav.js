@@ -29,7 +29,7 @@ const SideNav = () => {
           )}
           {!isNavOpen && (
             <>
-              <li><Link href="/home" className='navLink'><FaHome /></Link></li>
+              <li><Link href="/dashboard" className='navLink'><FaHome /></Link></li>
               <li><Link href="/about" className='navLink'><FaInfoCircle /></Link></li>
               <li><Link href="/contact" className='navLink'><FaEnvelope /></Link></li>
             </>
