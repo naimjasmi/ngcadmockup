@@ -1,20 +1,22 @@
-/* sideNav.css */
+/* sidenav.css */
 
+/* Styles for the side navigation */
 .sidenav {
-  min-width: 50px; /* Set minimum width to prevent complete disappearance */
+  min-width: 50px;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
   background-color: #333;
   padding-top: 60px;
-  transition: width 0.3s ease; /* Add transition for width property */
+  transition: width 0.3s ease;
 }
 
 .sidenav.open {
-  width: 250px; /* Adjusted width for open state */
+  width: 250px;
 }
 
+/* Styles for the toggle button */
 .toggle-btn {
   position: absolute;
   top: 20px;
@@ -22,13 +24,14 @@
   cursor: pointer;
   font-size: 20px;
   color: #fff;
-  transition: left 0.3s ease; /* Transition added for left property */
+  transition: left 0.3s ease;
 }
 
 .sidenav:not(.open) .toggle-btn {
-  left: 5px; /* Adjusted left position for closed state */
+  left: 5px;
 }
 
+/* Styles for the navigation links */
 ul {
   list-style-type: none;
   padding: 0;
@@ -37,21 +40,28 @@ ul {
 ul li {
   padding: 15px;
   color: #fff;
-  display: flex; /* Add display flex to align icon and text */
-  align-items: center; /* Align items vertically */
+  display: flex;
+  align-items: center;
 }
 
 /* Set fixed width and height for the icons */
 ul li svg {
-  margin-right: 2px; /* Add margin to separate icon from text */
+  margin-right: 2px;
+  color: #fff; /* Change icon color to white */
 }
 
+/* Change color of text to white */
+.navLink {
+  color: #fff;
+  text-decoration: none; /* Remove underline */
+}
 
-ul li:hover {
+/* Change background color on hover */
+.navLink:hover {
   background-color: #b00909;
 }
 
-/* Styles for logout */
+/* Styles for the logout section */
 .logout {
   position: fixed;
   bottom: 0;
@@ -62,7 +72,7 @@ ul li:hover {
   list-style: none;
   background-color: #333;
   border-top: 1px solid #666;
-  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  transition: transform 0.3s ease;
   transform: translateY(100%);
 }
 
@@ -77,10 +87,18 @@ ul li:hover {
   align-items: center;
 }
 
+/* Change color of logout icon to white */
 .logout li svg {
   margin-right: 10px;
+  color: #fff; /* Change icon color to white */
 }
 
+/* Change color of logout text to white */
+.logout li {
+  color: #fff; /* Change text color to white */
+}
+
+/* Change background color on hover */
 .logout li:hover {
   background-color: #555;
 }

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { FaBars, FaHome, FaInfoCircle, FaEnvelope, FaSignOutAlt } from 'react-icons/fa'; // Import icons
+import Link from 'next/link';
 import "./sidenav.css";
 
 const SideNav = () => {
@@ -21,16 +22,16 @@ const SideNav = () => {
         <ul>
           {isNavOpen && (
             <>
-              <li><FaHome /> Home</li>
-              <li><FaInfoCircle /> About</li>
-              <li><FaEnvelope /> Contact</li>
+              <li><Link href="/dashboard" className='navLink'><FaHome /> Dashboard</Link></li>
+              <li><Link href="/about" className='navLink'><FaInfoCircle /> About</Link></li>
+              <li><Link href="/contact" className='navLink'><FaEnvelope /> Contact</Link></li>
             </>
           )}
           {!isNavOpen && (
             <>
-              <li><FaHome /></li>
-              <li><FaInfoCircle /></li>
-              <li><FaEnvelope /></li>
+              <li><Link href="/home" className='navLink'><FaHome /></Link></li>
+              <li><Link href="/about" className='navLink'><FaInfoCircle /></Link></li>
+              <li><Link href="/contact" className='navLink'><FaEnvelope /></Link></li>
             </>
           )}
         </ul>

@@ -1,7 +1,53 @@
+/* CSS (dashboard.css) */
 .main {
-    padding: 20px; /* Add padding for better visual separation */
-    /* Adjust margin-left when side nav is open */
-    margin-left: 250px;
+    padding: 40px;
+    padding-left: 250px; /* Adjust left padding to accommodate the expanded sidebar */
 }
 
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+    gap: 40px;
+}
 
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333333;
+}
+
+.card p {
+    margin-bottom: 30px;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.card button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
