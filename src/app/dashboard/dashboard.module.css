@@ -1,0 +1,14 @@
+.main {
+    padding: 20px; /* Add padding for better visual separation */
+    /* Adjust margin-left when side nav is open */
+    margin-left: 250px;
+}
+
+/* Media query to adjust margin-left when side nav is collapsed */
+@media (max-width: 250px) {
+    .main {
+        margin-left: 40px;
+    }
+}
+
+

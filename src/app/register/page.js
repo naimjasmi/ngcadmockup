@@ -8,6 +8,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function RegisterPage() {
     const router = useRouter();
+    const [fname, setFname] = useState(""); // Corrected from 'setfname' to 'setFname'
+    const [lname, setLname] = useState(""); // Added state for last name
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -117,6 +119,28 @@ export default function RegisterPage() {
             </h1>
 
             <form onSubmit={handleRegister} className={styles.form}>
+                <div className={styles.formGroup}>
+                    <div className={styles.nameInputGroup}>
+                        <input
+                            type="text"
+                            id="firstName"
+                            className={`${styles.input} ${styles.nameInput}`}
+                            placeholder="First Name"
+                            value={fname}
+                            onChange={(e) => setFname(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            id="lastName"
+                            className={`${styles.input} ${styles.nameInput}`}
+                            placeholder="Last Name"
+                            value={lname}
+                            onChange={(e) => setLname(e.target.value)}
+                        />
+                    </div>
+                </div>
+
+
                 <div className={styles.formGroup}>
                     {/*  <label htmlFor="username" className={styles.label}></label> */}
                     <input

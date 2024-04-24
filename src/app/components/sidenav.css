@@ -1,0 +1,88 @@
+/* sideNav.css */
+
+.sidenav {
+    min-width: 50px; /* Set minimum width to prevent complete disappearance */
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 60px;
+    transition: width 0.3s ease; /* Add transition for width property */
+  }
+  
+  .sidenav.open {
+    width: 250px; /* Adjusted width for open state */
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    transition: left 0.3s ease; /* Transition added for left property */
+  }
+  
+  .sidenav:not(.open) .toggle-btn {
+    left: 5px; /* Adjusted left position for closed state */
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    padding: 15px;
+    color: #fff;
+    display: flex; /* Add display flex to align icon and text */
+    align-items: center; /* Align items vertically */
+  }
+  
+  ul li svg {
+    margin-right: 10px; /* Add margin to separate icon from text */
+  }
+  
+  ul li:hover {
+    background-color: #555;
+  }
+
+
+
+.logout {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #333;
+    border-top: 1px solid #666;
+    transition: transform 0.3s ease; /* Add transition for smooth animation */
+    transform: translateY(100%);
+  }
+  
+  .logout.visible {
+    transform: translateY(0);
+  }
+  
+  .logout li {
+    padding: 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout li svg {
+    margin-right: 10px;
+  }
+  
+  .logout li:hover {
+    background-color: #555;
+  }
+  
+  
+  
