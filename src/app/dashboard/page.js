@@ -4,12 +4,13 @@ import React from 'react';
 import SideNav from "@/app/components/sidenav";
 import styles from "./dashboard.module.css";
 import MapCard from '../components/mapcard';
+import ChatBox from '../components/chatbox';
 
 const Dashboard = () => {
     return (
         <>
-            <SideNav />
             <div className={styles.main}>
+                <SideNav />
                 <h1>Emergency CAD Admin Dashboard</h1>
                 <div className={styles.container}>
                     <div className={styles.leftPanel}>
@@ -28,27 +29,13 @@ const Dashboard = () => {
                             <p>Access statistical data on emergencies and user activities.</p>
                             <button>View Statistics</button>
                         </div>
-                        <div className={styles.card}>
-                            <h2>Generate Reports</h2>
-                            <p>Generate detailed reports on incidents, user activities, and system performance.</p>
-                            <button>Generate Reports</button>
-                        </div>
                     </div>
                     <div className={styles.rightPanel}>
                         <MapCard />
-                        <div className={styles.card}>
-                            <h2>Manage Dispatch Centers</h2>
-                            <p>Coordinate dispatch operations across multiple centers.</p>
-                            <button>View Dispatch Centers</button>
-                        </div>
-                        
-                        <div className={styles.card}>
-                            <h2>Manage Notifications</h2>
-                            <p>Configure and send notifications to emergency response teams.</p>
-                            <button>Manage Notifications</button>
-                        </div>
+                        <ChatBox className={styles.chatboxWidget} />
                     </div>
                 </div>
+                
             </div>
         </>
     );
