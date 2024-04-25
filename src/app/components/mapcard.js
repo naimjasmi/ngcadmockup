@@ -19,7 +19,7 @@ const MapCard = () => {
         };
     }, []); // Empty dependency array ensures the effect runs only once
 
-    return <div id="map" style={{ height: '400px' }}></div>;
+    return <div id="map" style={{ height: '650px' }}></div>;
 };
 
 export default MapCard;

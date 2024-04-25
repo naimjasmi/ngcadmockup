@@ -1,7 +1,9 @@
 /* dashboard.module.css */
+
 .main {
     padding: 40px;
     padding-left: 250px; /* Adjust left padding to accommodate the expanded sidebar */
+    position: relative; /* Ensure relative positioning for absolute positioning of chatbox */
 }
 
 .container {
@@ -21,7 +23,6 @@
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    cursor: pointer;
     overflow: hidden; /* Prevent content overflow */
 }
 
@@ -60,4 +61,12 @@
 .rightPanel {
     width: 400px; /* Adjust the width of the map panel */
     margin-left: 20px; /* Adjust the space between left and right panels */
+}
+
+/* Custom class for chatbox widget positioning */
+.chatboxWidget {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
 }
