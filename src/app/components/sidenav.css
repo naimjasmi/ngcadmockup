@@ -11,9 +11,9 @@
   padding-top: 60px;
   transition: width 0.3s ease;
   color: #fff;
+  z-index: 2; /* Ensure side navigation is above the main content */
 }
 
-/* Styles for the toggle button */
 /* Styles for the toggle button */
 .toggle-btn {
   position: absolute;
@@ -21,16 +21,15 @@
   left: 10px;
   cursor: pointer;
   font-size: 20px;
-  color: #fff; /* Set initial color of the icon */
-  background-color: #333; /* Set background color of the icon */
-  padding: 8px; /* Adjust padding to increase clickable area */
-  transition: left 0.3s ease, background-color 0.3s ease; /* Add transition effect */
+  color: #fff;
+  background-color: #333;
+  padding: 8px;
+  transition: left 0.3s ease, background-color 0.3s ease;
 }
 
 .toggle-btn:hover {
-  background-color: #555; /* Change background color on hover */
+  background-color: #555;
 }
-
 
 .sidenav:not(.open) .toggle-btn {
   left: 5px;
@@ -52,16 +51,15 @@ ul li:hover {
   background-color: #b00909;
 }
 
-/* Set fixed width and height for the icons */
 ul li svg {
   margin-right: 2px;
-  color: #fff; /* Change icon color to white */
+  color: #fff;
 }
 
 /* Change color of text to white */
 .navLink {
   color: #fff;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -99,12 +97,12 @@ ul li svg {
 /* Change color of logout icon to white */
 .logout li svg {
   margin-right: 10px;
-  color: #fff; /* Change icon color to white */
+  color: #fff;
 }
 
 /* Change color of logout text to white */
 .logout li {
-  color: #fff; /* Change text color to white */
+  color: #fff;
 }
 
 /* Change background color on hover */

@@ -87,7 +87,7 @@
 .sendButton {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #007bff; /* Change button background color */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -97,4 +97,15 @@
 
 .sendButton:hover {
     background-color: #0056b3;
+    color: #fff; ;
+}
+
+/* Remove grey box container for close button */
+.card button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    outline: inherit;
 }
