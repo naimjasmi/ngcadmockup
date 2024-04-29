@@ -18,3 +18,10 @@
     height: 100%; /* Ensure the map takes up the full height of its container */
 }
 
+.heading {
+    font-family: "Arial", sans-serif; /* Change font family */
+    font-size: 28px; /* Change font size */
+    font-weight: bold; /* Make the font bold */
+    color: #333; /* Change text color */
+    margin-bottom: 20px; /* Add some margin at the bottom */
+}
