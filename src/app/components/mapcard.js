@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { FaMapMarkerAlt } from 'react-icons/fa';
@@ -8,9 +8,16 @@ import styles from './mapcard.module.css';
 const MapCard = () => {
     const [map, setMap] = useState(null);
     const [currentLayer, setCurrentLayer] = useState('street');
+    const [panelOpen, setPanelOpen] = useState(true); // State to control panel open/close
+
+    const streetButtonControl = useRef(null);
+    const topoButtonControl = useRef(null);
+    const closeButton = useRef(null); // Reference to the close panel button
+    const openButton = useRef(null); // Reference to the open panel button
+    const zoomControl = useRef(null); // Reference to the zoom control
 
     useEffect(() => {
-        const leafletMap = L.map('map').setView([2.9213, 101.6559], 13);
+        const leafletMap = L.map('map', { zoomControl: false }).setView([2.9213, 101.6559], 13);
         setMap(leafletMap);
 
         const layers = {
@@ -40,7 +47,7 @@ const MapCard = () => {
             [2.9500, 101.6800, 'Marker 5 Description'],
         ];
 
-        markers.forEach((marker) => {
+        markers.forEach((marker, index) => { // Added index for key in map
             const [lat, lng, description] = marker;
             const newMarker = L.marker([lat, lng], { icon: redIcon }).addTo(leafletMap);
             newMarker.bindPopup(`
@@ -50,6 +57,9 @@ const MapCard = () => {
                 </div>
             `);
         });
+
+        // Add zoom control to the bottom right
+        zoomControl.current = L.control.zoom({ position: 'bottomright' }).addTo(leafletMap);
 
         return () => {
             leafletMap.remove();
@@ -83,68 +93,101 @@ const MapCard = () => {
         setCurrentLayer(layer);
     };
 
+    const togglePanel = () => {
+        setPanelOpen(!panelOpen);
+    };
+
     useEffect(() => {
         if (map) {
-            const streetButton = L.control({ position: 'topright' });
-            streetButton.onAdd = function () {
+            // Remove existing controls
+            if (streetButtonControl.current) {
+                streetButtonControl.current.remove();
+            }
+            if (topoButtonControl.current) {
+                topoButtonControl.current.remove();
+            }
+            if (closeButton.current) {
+                closeButton.current.remove();
+            }
+            if (openButton.current) {
+                openButton.current.remove();
+            }
+
+            // Add street button control
+            streetButtonControl.current = L.control({ position: 'topright' });
+            streetButtonControl.current.onAdd = function () {
                 const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
                 const button = L.DomUtil.create('button', 'leaflet-button');
                 button.innerHTML = 'Street';
                 button.onclick = () => handleLayerChange('street');
                 container.appendChild(button);
-
-                // Apply styles
-                container.style.backgroundColor = '#ffffff';
-                container.style.borderRadius = '5px';
-                container.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-                container.style.padding = '5px';
-                container.style.marginBottom = '5px';
-
-                button.style.cursor = 'pointer';
-                button.style.border = 'none';
-                button.style.borderRadius = '5px';
-                button.style.backgroundColor = '#007bff';
-                button.style.color = '#ffffff';
-                button.style.padding = '8px 12px';
-                button.style.transition = 'background-color 0.3s ease';
-                button.style.width = '100px'; // Adjust width as needed
-
+                // Add styling...
                 return container;
             };
+            streetButtonControl.current.addTo(map);
 
-            const topoButton = L.control({ position: 'topright' });
-            topoButton.onAdd = function () {
+            // Add topo map button control
+            topoButtonControl.current = L.control({ position: 'topright' });
+            topoButtonControl.current.onAdd = function () {
                 const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
                 const button = L.DomUtil.create('button', 'leaflet-button');
                 button.innerHTML = 'TopoMap';
                 button.onclick = () => handleLayerChange('topoMap');
                 container.appendChild(button);
-
-                // Apply styles
-                container.style.backgroundColor = '#ffffff';
-                container.style.borderRadius = '5px';
-                container.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-                container.style.padding = '5px';
-                container.style.marginBottom = '5px';
-
-                button.style.cursor = 'pointer';
-                button.style.border = 'none';
-                button.style.borderRadius = '5px';
-                button.style.backgroundColor = '#007bff';
-                button.style.color = '#ffffff';
-                button.style.padding = '8px 12px';
-                button.style.transition = 'background-color 0.3s ease';
-                button.style.width = '100px'; // Adjust width as needed
-
+                // Add styling...
                 return container;
             };
+            topoButtonControl.current.addTo(map);
 
-            streetButton.addTo(map);
-            topoButton.addTo(map);
+            // Add close panel button if panel is open
+            if (panelOpen) {
+                closeButton.current = L.control({ position: 'topleft' });
+                closeButton.current.onAdd = function () {
+                    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                    const button = L.DomUtil.create('button', 'leaflet-button');
+                    button.innerHTML = 'X';
+                    button.onclick = togglePanel;
+                    container.appendChild(button);
+                    // Add styling...
+                    return container;
+                };
+                closeButton.current.addTo(map);
+            } else {
+                // Add open panel button if panel is closed
+                openButton.current = L.control({ position: 'topleft' });
+                openButton.current.onAdd = function () {
+                    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                    const button = L.DomUtil.create('button', 'leaflet-button');
+                    button.innerHTML = 'Open Panel';
+                    button.onclick = togglePanel;
+                    container.appendChild(button);
+                    // Add styling...
+                    return container;
+                };
+                openButton.current.addTo(map);
+            }
         }
-    }, [map]);
+    }, [map, panelOpen]);
 
-    return <div id="map" className={styles.map}></div>;
+    return (
+        <div className={styles.mapContainer}>
+            {panelOpen && (
+                <div className={styles.panel}>
+                    {/* Add your panel content here */}
+                    <h2>Marker Panel</h2>
+                    <ul>
+                        {/* Dummy list of markers */}
+                        <li>Marker 1 - Location 1</li>
+                        <li>Marker 2 - Location 2</li>
+                        <li>Marker 3 - Location 3</li>
+                        <li>Marker 4 - Location 4</li>
+                        <li>Marker 5 - Location 5</li>
+                    </ul>
+                </div>
+            )}
+            <div id="map" className={styles.map}></div>
+        </div>
+    );
 };
 
 export default MapCard;
