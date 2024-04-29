@@ -21,7 +21,7 @@ const Dashboard = () => {
                             height={50}
                         />
                     </div>
-                    <h1 className={styles.heading}>Incident Response Dashboard</h1>
+                    <h4 className={styles.heading}>Incident Response Dashboard</h4>
                     <MapCard />
                 </div>
             </div>
