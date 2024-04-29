@@ -1,22 +1,42 @@
 /* mapcard.module.css */
 
 /* Ensure the map container takes up the full screen */
-.map-container {
-    position: relative;
+.mapContainer {
     flex-grow: 1;
+    position: relative;
     height: calc(100vh - 40px); /* Subtract the header height */
 }
 
 /* Ensure the map takes up the full space within its container */
 .map {
-    width: 150vh; /* Set initial width */
-    height: 80vh; /* Set initial height */
+    flex: 1;
+    width: 150vh;
+    height: 80vh;
+}
+
+/* Style the panel */
+.panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.8);
+    color: #fff;
+    border-right: 1px solid #ddd;
+    z-index: 1000; /* Ensure the panel appears above the map */
+    padding: 10px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Adjust map size for smaller screens */
 @media (max-width: 768px) {
-    .map-container {
+    .mapContainer {
         height: calc(60vh - 40px); /* Decrease height for smaller screens */
+    }
+    .panel {
+        width: 150px;
     }
 
     .map {

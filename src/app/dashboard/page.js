@@ -13,7 +13,7 @@ const Dashboard = () => {
             <SideNav />
             <div className={styles.container}>
                 <div className={styles.main}>
-                <div>
+                    <div>
                         <Image
                             src="/emergensyslogo.png"
                             alt="CAD Logo"
