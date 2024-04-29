@@ -1,4 +1,3 @@
-// mapcard.js
 import React, { useEffect, useState, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -14,9 +13,10 @@ const MapCard = () => {
     const streetButtonControl = useRef(null);
     const topoButtonControl = useRef(null);
     const panelButtonControl = useRef(null);
+    const zoomControl = useRef(null); // Reference to the zoom control
 
     useEffect(() => {
-        const leafletMap = L.map('map').setView([2.9213, 101.6559], 13);
+        const leafletMap = L.map('map', { zoomControl: false }).setView([2.9213, 101.6559], 13);
         setMap(leafletMap);
 
         const layers = {
@@ -56,6 +56,9 @@ const MapCard = () => {
                 </div>
             `);
         });
+
+        // Add zoom control to the bottom right
+        zoomControl.current = L.control.zoom({ position: 'bottomright' }).addTo(leafletMap);
 
         return () => {
             leafletMap.remove();
