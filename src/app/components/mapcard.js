@@ -8,7 +8,10 @@ import styles from './mapcard.module.css';
 const MapCard = () => {
     const [map, setMap] = useState(null);
     const [currentLayer, setCurrentLayer] = useState('street');
-    const [panelOpen, setPanelOpen] = useState(true); // State to control panel open/close
+    const [panelOpen, setPanelOpen] = useState(false); // State to control panel open/close
+    const [selectedMarker, setSelectedMarker] = useState(null); // State to store selected marker
+    const [selectedEventName, setSelectedEventName] = useState(''); // State to store selected event name
+    const [markers, setMarkers] = useState([]); // State to store markers
 
     const streetButtonControl = useRef(null);
     const topoButtonControl = useRef(null);
@@ -39,24 +42,48 @@ const MapCard = () => {
         });
 
         // Add dummy markers
-        const markers = [
-            [2.9300, 101.6600, 'Marker 1 Description'],
-            [2.9100, 101.6500, 'Marker 2 Description'],
-            [2.9400, 101.6700, 'Marker 3 Description'],
-            [2.9200, 101.6400, 'Marker 4 Description'],
-            [2.9500, 101.6800, 'Marker 5 Description'],
+        const initialMarkers = [
+            {lat: 2.9300, lng: 101.6600, description: 'Marker 1 Description', nature: 'Fire', reportingPerson: 'John Doe', riskLevel: 'High', priority: 'Urgent'},
+            {lat: 2.9100, lng: 101.6500, description: 'Marker 2 Description', nature: 'Flood', reportingPerson: 'Jane Smith', riskLevel: 'Medium', priority: 'High'},
+            {lat: 2.9400, lng: 101.6700, description: 'Marker 3 Description', nature: 'Earthquake', reportingPerson: 'Alice Johnson', riskLevel: 'Low', priority: 'Medium'},
+            {lat: 2.9200, lng: 101.6400, description: 'Marker 4 Description', nature: 'Accident', reportingPerson: 'Bob Brown', riskLevel: 'High', priority: 'Urgent'},
+            {lat: 2.9500, lng: 101.6800, description: 'Marker 5 Description', nature: 'Medical Emergency', reportingPerson: 'Eve Wilson', riskLevel: 'Medium', priority: 'High'},
         ];
 
-        markers.forEach((marker, index) => { // Added index for key in map
-            const [lat, lng, description] = marker;
+        const generateRandomEventName = () => {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            let randomEventName = '';
+            for (let i = 0; i < 2; i++) {
+                randomEventName += letters.charAt(Math.floor(Math.random() * letters.length));
+            }
+            for (let i = 0; i < 3; i++) {
+                randomEventName += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            }
+            return randomEventName;
+        };
+
+        initialMarkers.forEach((marker, index) => { // Added index for key in map
+            const {lat, lng, description, nature, reportingPerson, riskLevel, priority} = marker;
+            const [latitude, longitude] = [lat.toFixed(6), lng.toFixed(6)]; // Round coordinates to 6 decimal places
+            const eventName = generateRandomEventName(); // Generate dummy event name
+            const dummyDescription = "This is a dummy description for emergency CAD system."; // Dummy description
             const newMarker = L.marker([lat, lng], { icon: redIcon }).addTo(leafletMap);
             newMarker.bindPopup(`
-                <div>
-                    <h3>${description}</h3>
-                    <p>Additional information can go here...</p>
+                <div class="${styles.popupContent}">
+                    <h3>${eventName}</h3>
+                    <hr/>
+                    <p><strong>Coordinates:</strong> ${latitude}, ${longitude}</p>
+                    <p><strong>Description:</strong> ${dummyDescription}</p>
                 </div>
             `);
+            newMarker.on('click', () => {
+                setSelectedMarker(marker);
+                setSelectedEventName(eventName); // Set selected event name when marker is clicked
+                setPanelOpen(true); // Open panel when marker is clicked
+            });
         });
+        setMarkers(initialMarkers);
 
         // Add zoom control to the bottom right
         zoomControl.current = L.control.zoom({ position: 'bottomright' }).addTo(leafletMap);
@@ -174,15 +201,19 @@ const MapCard = () => {
             {panelOpen && (
                 <div className={styles.panel}>
                     {/* Add your panel content here */}
-                    <h2>Marker Panel</h2>
-                    <ul>
-                        {/* Dummy list of markers */}
-                        <li>Marker 1 - Location 1</li>
-                        <li>Marker 2 - Location 2</li>
-                        <li>Marker 3 - Location 3</li>
-                        <li>Marker 4 - Location 4</li>
-                        <li>Marker 5 - Location 5</li>
-                    </ul>
+                    <br/>
+                    {selectedMarker && (
+                        <div>
+                            <h3>{`Event ${selectedEventName}`}</h3>
+                            <p><strong>Coordinates:</strong> {selectedMarker.lat.toFixed(6)}, {selectedMarker.lng.toFixed(6)}</p>
+                            <p><strong>Description:</strong> {selectedMarker.description}</p>
+                            <p><strong>Nature:</strong> {selectedMarker.nature}</p>
+                            <p><strong>Reporting Person:</strong> {selectedMarker.reportingPerson}</p>
+                            <p><strong>Risk Level:</strong> {selectedMarker.riskLevel}</p>
+                            <p><strong>Priority:</strong> {selectedMarker.priority}</p>
+                            <p>Additional information can go here...</p>
+                        </div>
+                    )}
                 </div>
             )}
             <div id="map" className={styles.map}></div>
