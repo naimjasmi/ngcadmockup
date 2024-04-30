@@ -36,18 +36,18 @@ const SideNav = () => {
         <ul>
           {isNavOpen && (
             <>
-              <li><Link className='navLink' href="/dashboard"><FaHome /> Dashboard</Link></li>
-              <li onClick={toggleTopNav}><FaBuffer /> Event</li>
-              <li><Link className='navLink' href="/about"><FaInfoCircle /> About</Link></li>
-              <li><Link className='navLink' href="/contact"><FaEnvelope /> Contact</Link></li>
+              <li className='navLink'><Link className='navLink' href="/dashboard"><FaHome /> Dashboard</Link></li>
+              <li className='navLink' onClick={toggleTopNav}><FaBuffer /> Event</li>
+              <li className='navLink'><Link className='navLink' href="/about"><FaInfoCircle /> About</Link></li>
+              <li className='navLink'><Link className='navLink' href="/contact"><FaEnvelope /> Contact</Link></li>
             </>
           )}
           {!isNavOpen && (
             <>
-              <li><Link className='navLink' href="/dashboard"><FaHome /></Link></li>
-              <li onClick={toggleTopNav}><FaBuffer/></li>
-              <li><Link className='navLink' href="/about"><FaInfoCircle /></Link></li>
-              <li><Link className='navLink' href="/contact" ><FaEnvelope /></Link></li>
+              <li className='navLink'><Link className='navLink' href="/dashboard"><FaHome /></Link></li>
+              <li className='navLink' onClick={toggleTopNav}><FaBuffer /></li>
+              <li className='navLink'><Link className='navLink' href="/about"><FaInfoCircle /></Link></li>
+              <li className='navLink'><Link className='navLink' href="/contact" ><FaEnvelope /></Link></li>
             </>
           )}
         </ul>
@@ -66,15 +66,11 @@ const SideNav = () => {
       </div>
       {showTopNav && (
         <div className="top-nav">
-          <ul>
-            <li>Report Event</li>
-            <li>Event summary</li>
-            <li>Event Management</li>
-            <li className="close-button" onClick={toggleTopNav}>
-              <FaTimes />
-            </li>
-          </ul>
+            <li className="top-nav-item">Report Event</li>
+            <li className="top-nav-item">Event summary</li>
+            <li className="top-nav-item">Event Management</li>
         </div>
+
       )}
     </>
   );

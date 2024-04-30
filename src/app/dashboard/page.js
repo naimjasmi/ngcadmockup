@@ -15,13 +15,14 @@ const Dashboard = () => {
                 <div className={styles.main}>
                     <div>
                         <Image
+                            className={styles.img}
                             src="/emergensyslogo.png"
                             alt="CAD Logo"
                             width={270}
                             height={50}
                         />
                     </div>
-                    <h1 className={styles.heading}>Incident Response Dashboard</h1>
+                    <h4 className={styles.heading}>Incident Response Dashboard</h4>
                     <MapCard />
                 </div>
             </div>

@@ -1,17 +1,22 @@
 /* dashboard.module.css */
 
 .main {
-    padding: 40px;
-    padding-left: 250px; /* Adjust left padding to accommodate the expanded sidebar */
+    padding: 10px;
+    padding-top: 40px;
+    margin-left: 200px; /* Adjust left padding to accommodate the expanded sidebar */
     position: relative; /* Ensure relative positioning for absolute positioning of chatbox */
-    height: 100vh; /* Set the height of the main container to 100% of viewport height */
+    height: 100%; /* Set the height of the main container to 100% of viewport height */
     z-index: 1; /* Ensure main content is above the side navigation */
+    overflow: hidden;
 }
 
+.img{
+    padding-bottom: 1px;
+}
 .container {
-    display: flex;
+    display:flex;
+    overflow: hidden;
 }
-
 /* Adjust the map container to fill the available space */
 #map {
     width: 100%; /* Ensure the map takes up the full width of its container */
@@ -20,8 +25,8 @@
 
 .heading {
     font-family: "Arial", sans-serif; /* Change font family */
-    font-size: 28px; /* Change font size */
-    font-weight: bold; /* Make the font bold */
+    font-size: 18px; /* Change font size */
     color: #333; /* Change text color */
-    margin-bottom: 20px; /* Add some margin at the bottom */
+    margin-bottom: 10px; /* Add some margin at the bottom */
+    margin-top: 10px;
 }
