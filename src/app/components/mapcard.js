@@ -196,6 +196,11 @@ const MapCard = () => {
         }
     }, [map, panelOpen]);
 
+    const handleViewDetails = () => {
+        // Implement view details functionality here
+        console.log("View Details clicked");
+    };
+
     return (
         <div className={styles.mapContainer}>
             {panelOpen && (
@@ -205,13 +210,13 @@ const MapCard = () => {
                     {selectedMarker && (
                         <div>
                             <h3>{`Event ${selectedEventName}`}</h3>
-                            <p><strong>Coordinates:</strong> {selectedMarker.lat.toFixed(6)}, {selectedMarker.lng.toFixed(6)}</p>
-                            <p><strong>Description:</strong> {selectedMarker.description}</p>
-                            <p><strong>Nature:</strong> {selectedMarker.nature}</p>
-                            <p><strong>Reporting Person:</strong> {selectedMarker.reportingPerson}</p>
-                            <p><strong>Risk Level:</strong> {selectedMarker.riskLevel}</p>
-                            <p><strong>Priority:</strong> {selectedMarker.priority}</p>
-                            <p>Additional information can go here...</p>
+                            <p><strong>Coordinates</strong><br/> {selectedMarker.lat.toFixed(6)}, {selectedMarker.lng.toFixed(6)}</p>
+                            <p><strong>Description</strong><br/> {selectedMarker.description}</p>
+                            <p><strong>Nature</strong> <br/> {selectedMarker.nature}</p>
+                            <p><strong>Reporting Person</strong><br/> {selectedMarker.reportingPerson}</p>
+                            <p><strong>Risk Level</strong><br/> {selectedMarker.riskLevel}</p>
+                            <p><strong>Priority</strong><br/> {selectedMarker.priority}</p>
+                            <button onClick={handleViewDetails}>View Details</button>
                         </div>
                     )}
                 </div>
