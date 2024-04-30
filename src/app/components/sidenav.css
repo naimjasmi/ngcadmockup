@@ -12,6 +12,7 @@
   transition: width 0.3s ease;
   color: #fff;
   z-index: 2; /* Ensure side navigation is above the main content */
+  overflow: hidden;
 }
 
 /* Styles for the toggle button */

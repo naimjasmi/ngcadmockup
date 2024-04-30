@@ -15,6 +15,7 @@ const Dashboard = () => {
                 <div className={styles.main}>
                     <div>
                         <Image
+                            className={styles.img}
                             src="/emergensyslogo.png"
                             alt="CAD Logo"
                             width={270}
